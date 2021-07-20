@@ -2,7 +2,7 @@ package movie_timeline;
 
 public class TimeStamp {
 	
-	int timeSeconds ; // total duration: example: 300 seconds
+	int timeSeconds ; // total seconds: example: 300 seconds
 	int hours, minutes, seconds ; // timestamp format: hh:mm:ss
 	
 	public TimeStamp(int timeSeconds) {
@@ -26,5 +26,4 @@ public class TimeStamp {
 		System.out.println(timeStamp1);
 	}
 	
-
 }
