@@ -4,7 +4,7 @@ public class MovieClip {
 	
 	String name ;
 	int totalSeconds ; // total duration in seconds
-	int offset ; // start offset in seconds
+	int offsetSeconds ; // start offset in seconds
 	int hours, minutes, seconds ; // for duration
 	TimeStamp startTimeStamp, endTimeStamp ; // actual time stamps
 	TimeStampSpecifier specifier ;
@@ -15,7 +15,7 @@ public class MovieClip {
 		this.minutes = minutes ;
 		this.seconds = seconds ;
 		this.totalSeconds = hours*3600 + minutes*60 + seconds ;
-		this.offset = 0 ;
+		this.offsetSeconds = 0 ;
 		this.specifier = specifier ;
 	}
 	
@@ -37,7 +37,9 @@ public class MovieClip {
 	}
 	
 	public MovieClip setOffset(int offset) {
-		this.offset = offset ;
+		this.offsetSeconds = offset ;
+		startTimeStamp = new TimeStamp(offsetSeconds) ;
+		endTimeStamp = new TimeStamp(offsetSeconds+getTotalSeconds()) ;
 		return this ;
 	}
 	
@@ -46,12 +48,16 @@ public class MovieClip {
 	}
 	
 	public TimeStamp getStartTimeStamp() {
-		startTimeStamp = new TimeStamp(offset) ;
+		if(startTimeStamp==null) {
+			startTimeStamp = new TimeStamp(offsetSeconds) ;
+		}
 		return startTimeStamp ;
 	}
 	
 	public TimeStamp getEndTimeStamp() {
-		endTimeStamp = new TimeStamp(offset+getTotalSeconds()) ;
+		if(endTimeStamp==null) {
+			endTimeStamp = new TimeStamp(offsetSeconds+getTotalSeconds()) ;
+		}
 		return endTimeStamp ;
 	}
 
@@ -74,17 +80,26 @@ public class MovieClip {
 		return str ;
 	}
 	
-	// create a parser for the text files
-	
-	
+	// create a parser for the string --> format: "hhh:mm:ss name " --> has to be the duration format
+	public static MovieClip parseString(String str) {
+		String temp = str.trim() ; // remove white spaces (leading, trailing)
+		int index = 0 ;
+		for(int i=0; i<temp.length(); i++) {
+			if(temp.charAt(i)==' ') {
+				index = i ;
+				break ;
+			}
+		}
+		// split the time stamp and name
+		String timeStampStr = temp.substring(0, index) ;
+		String[] args = timeStampStr.split(":") ;
+		String name = temp.substring(index).trim() ;
+		return new MovieClip(name, Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2])) ;
+	}
+		
 	public static void main(String[] args) {
-		MovieClip clip1 = new MovieClip("Avengers End game", 2, 35, 5) ;
-		System.out.println(clip1);
-		clip1.setTimeStampSpecifier(TimeStampSpecifier.START_TIME) ;
-		System.out.println(clip1);
-		clip1.setOffset(210) ;
-		System.out.println(clip1);
-		clip1.setTimeStampSpecifier(TimeStampSpecifier.END_TIME) ;
+		// parsing string
+		MovieClip clip1 = MovieClip.parseString("0:2:3 some arbitrary name") ;
 		System.out.println(clip1);
 	}
 
