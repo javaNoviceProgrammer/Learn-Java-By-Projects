@@ -83,13 +83,14 @@ public class MovieClip {
 	// create a parser for the string --> format: "hhh:mm:ss name " --> has to be the duration format
 	public static MovieClip parseString(String str) {
 		String temp = str.trim() ; // remove white spaces (leading, trailing)
-		int index = 0 ;
-		for(int i=0; i<temp.length(); i++) {
-			if(temp.charAt(i)==' ') {
-				index = i ;
-				break ;
-			}
-		}
+//		int index = 0 ;
+//		for(int i=0; i<temp.length(); i++) {
+//			if(temp.charAt(i)==' ') {
+//				index = i ;
+//				break ;
+//			}
+//		}
+		int index = temp.indexOf(' ') ;
 		// split the time stamp and name
 		String timeStampStr = temp.substring(0, index) ;
 		String[] args = timeStampStr.split(":") ;
@@ -99,7 +100,7 @@ public class MovieClip {
 		
 	public static void main(String[] args) {
 		// parsing string
-		MovieClip clip1 = MovieClip.parseString("0:2:3 some arbitrary name") ;
+		MovieClip clip1 = MovieClip.parseString("0:2:300 some arbitrary name") ;
 		System.out.println(clip1);
 	}
 
