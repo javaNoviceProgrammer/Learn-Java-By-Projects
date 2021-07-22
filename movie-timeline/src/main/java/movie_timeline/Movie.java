@@ -86,17 +86,11 @@ public class Movie {
 	
 	
 	public static void main(String[] args) {
-//		MovieClip clip1 = MovieClip.parseString("0:2:3 some arbitrary name") ;
-//		MovieClip clip2 = MovieClip.parseString("1:13:2 some other movie clip") ;
-//		MovieClip clip3 = MovieClip.parseString("2:1:21 the third movie clip") ;
-//		Movie movie = new Movie("joined movie clips", TimeStampSpecifier.START_TIME) ;
-//		movie.addMovieClip(clip1).addMovieClip(clip2).addMovieClip(clip3) ;
-//		System.out.println(movie);
-//		// save to file
-//		movie.saveToFile("./src/main/resources/test2.txt");
-		String fileName = "./src/main/resources/test2.txt" ;
-		Movie movie = Movie.parseTextFile(fileName, TimeStampSpecifier.DURATION, TimeStampSpecifier.END_TIME) ;
-		movie.setName("some awesome movie") ;
+		MovieClip clip1 = MovieClip.parseString("0:2:3 some arbitrary name") ;
+		MovieClip clip2 = MovieClip.parseString("1:13:2 some other movie clip") ;
+		MovieClip clip3 = MovieClip.parseString("2:1:21 the third movie clip") ;
+		Movie movie = new Movie("joined movie clips", TimeStampSpecifier.START_TIME) ;
+		movie.addMovieClip(clip1).addMovieClip(clip2).addMovieClip(clip3) ;
 		System.out.println(movie);
 	}
 
