@@ -100,7 +100,7 @@ public class MovieClip {
 		
 	public static void main(String[] args) {
 		// parsing string
-		MovieClip clip1 = MovieClip.parseString("0:2:300 some arbitrary name") ;
+		MovieClip clip1 = MovieClip.parseString("0:2:300    some arbitrary name") ;
 		System.out.println(clip1);
 	}
 
