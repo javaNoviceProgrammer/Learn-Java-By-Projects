@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Movie {
 	
 	String name ; // name of the movie
+	String header ; // header for export text file
 	ArrayList<MovieClip> movieClips ; // a list of clips (added in sequence)
 	TimeStampSpecifier specifier ; // how the time stamps of the movie clips are going to be printed
 	int totalSecondsElapsed = 0 ;
@@ -22,6 +23,11 @@ public class Movie {
 	
 	public Movie setName(String name) {
 		this.name = name ;
+		return this ;
+	}
+	
+	public Movie setHeader(String header) {
+		this.header = header ;
 		return this ;
 	}
 	
@@ -47,7 +53,12 @@ public class Movie {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder(movieClips.size()*15) ;
-		String str = "MOVIE: %s [Time stamp format: %s]".formatted(name, specifier) ;
+		String str ;
+		if(header==null) {
+			str = "MOVIE: %s [Time stamp format: %s]".formatted(name, specifier) ;
+		} else {
+			str = header ;
+		}
 		sb.append(str).append(System.lineSeparator()) ;
 		sb.append("*".repeat(str.length())).append(System.lineSeparator()) ;
 		for(MovieClip clip : movieClips) {
@@ -89,6 +100,7 @@ public class Movie {
 		String fileName = "./src/main/resources/example1.txt" ;
 		Movie lectures = Movie.parseTextFile(fileName, TimeStampSpecifier.DURATION, TimeStampSpecifier.START_TIME) ;
 		lectures.setName("Lectures") ;
+		lectures.setHeader("Time-Line") ;
 		lectures.saveToFile("./src/main/resources/lectures_timeline.txt");
 	}
 

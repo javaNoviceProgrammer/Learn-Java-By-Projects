@@ -1,4 +1,5 @@
 00:22:12 Implementing TimeStamp Class 
 00:22:27 Implementing MovieClip Class
-20:39 Implementing "parseString()" to MovieClip 
+00:20:39 Implementing "parseString()" to MovieClip 
 00:30:49 Implementing Movie Class
+00:16:35 Example of creating and exporting movie time-line
