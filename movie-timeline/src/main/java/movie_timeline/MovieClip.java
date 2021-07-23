@@ -1,5 +1,6 @@
 package movie_timeline;
 
+
 public class MovieClip {
 	
 	String name ;
@@ -11,10 +12,7 @@ public class MovieClip {
 	
 	public MovieClip(String name, int hours, int minutes, int seconds, TimeStampSpecifier specifier) {
 		this.name = name ;
-		this.hours = hours ;
-		this.minutes = minutes ;
-		this.seconds = seconds ;
-		this.totalSeconds = hours*3600 + minutes*60 + seconds ;
+		setTotalSeconds(hours*3600 + minutes*60 + seconds) ;
 		this.offsetSeconds = 0 ;
 		this.specifier = specifier ;
 	}
@@ -33,6 +31,9 @@ public class MovieClip {
 		hours = totalSeconds/3600 ;
 		minutes = (totalSeconds - hours*3600)/60 ;
 		seconds = totalSeconds - hours*3600 - minutes*60 ;
+		// no need to change start time stamp
+		// we should update the end time stamp
+		endTimeStamp = new TimeStamp(offsetSeconds+totalSeconds) ;
 		return this ;
 	}
 	
@@ -81,26 +82,25 @@ public class MovieClip {
 	}
 	
 	// create a parser for the string --> format: "hhh:mm:ss name " --> has to be the duration format
+	// let's support: "mm:ss name"
 	public static MovieClip parseString(String str) {
 		String temp = str.trim() ; // remove white spaces (leading, trailing)
-//		int index = 0 ;
-//		for(int i=0; i<temp.length(); i++) {
-//			if(temp.charAt(i)==' ') {
-//				index = i ;
-//				break ;
-//			}
-//		}
 		int index = temp.indexOf(' ') ;
 		// split the time stamp and name
 		String timeStampStr = temp.substring(0, index) ;
 		String[] args = timeStampStr.split(":") ;
 		String name = temp.substring(index).trim() ;
-		return new MovieClip(name, Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2])) ;
+		if(args.length==3) 
+			return new MovieClip(name, Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2])) ;
+		else if(args.length==2)
+			return new MovieClip(name, 0, Integer.parseInt(args[0]), Integer.parseInt(args[1])) ;
+		else
+			throw new RuntimeException("Time Stamp format is not supported") ;
 	}
 		
 	public static void main(String[] args) {
 		// parsing string
-		MovieClip clip1 = MovieClip.parseString("0:2:300    some arbitrary name") ;
+		MovieClip clip1 = MovieClip.parseString("2:307  some arbitrary name") ;
 		System.out.println(clip1);
 	}
 

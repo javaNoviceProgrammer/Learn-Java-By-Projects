@@ -1,0 +1,6 @@
+MOVIE: Lectures [Time stamp format: START_TIME]
+***********************************************
+00:00:00 Implementing TimeStamp Class
+00:22:12 Implementing MovieClip Class
+00:44:39 Implementing "parseString()" to MovieClip
+01:05:18 Implementing Movie Class
