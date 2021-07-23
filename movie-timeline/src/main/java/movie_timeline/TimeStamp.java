@@ -21,9 +21,4 @@ public class TimeStamp {
 		return String.format("%s:%s:%s", Utils.toDoubleDigit(hours), Utils.toDoubleDigit(minutes), Utils.toDoubleDigit(seconds)) ;
 	}
 	
-	public static void main(String[] args) {
-		TimeStamp timeStamp1 = new TimeStamp(222) ;
-		System.out.println(timeStamp1);
-	}
-	
 }

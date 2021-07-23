@@ -97,11 +97,5 @@ public class MovieClip {
 		else
 			throw new RuntimeException("Time Stamp format is not supported") ;
 	}
-		
-	public static void main(String[] args) {
-		// parsing string
-		MovieClip clip1 = MovieClip.parseString("2:307  some arbitrary name") ;
-		System.out.println(clip1);
-	}
 
 }
