@@ -68,14 +68,14 @@ public class MovieClip {
 		String str ;
 		switch (specifier){
 			case START_TIME:
-				str = "%s %s".formatted(getStartTimeStamp(), name) ;
+				str = String.format("%s %s", getStartTimeStamp(), name) ;
 				break ;
 			case END_TIME:
-				str = "%s %s".formatted(getEndTimeStamp(), name) ;
+				str = String.format("%s %s", getEndTimeStamp(), name) ;
 				break ;
 			default:
 				// create a formatted time stamp for the duration
-				str = "%s %s".formatted(new TimeStamp(getTotalSeconds()), name) ;
+				str = String.format("%s %s", new TimeStamp(getTotalSeconds()), name) ;
 				break ;
 		}
 		return str ;

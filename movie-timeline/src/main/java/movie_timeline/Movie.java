@@ -55,7 +55,7 @@ public class Movie {
 		StringBuilder sb = new StringBuilder(movieClips.size()*15) ;
 		String str ;
 		if(header==null) {
-			str = "MOVIE: %s [Time stamp format: %s]".formatted(name, specifier) ;
+			str = String.format("MOVIE: %s [Time stamp format: %s]", name, specifier) ;
 		} else {
 			str = header ;
 		}
@@ -101,7 +101,8 @@ public class Movie {
 		Movie lectures = Movie.parseTextFile(fileName, TimeStampSpecifier.DURATION, TimeStampSpecifier.START_TIME) ;
 		lectures.setName("Lectures") ;
 		lectures.setHeader("Time-Line") ;
-		lectures.saveToFile("./src/main/resources/lectures_timeline.txt");
+//		lectures.saveToFile("./src/main/resources/lectures_timeline.txt");
+		System.out.println(lectures);
 	}
 
 }
