@@ -95,7 +95,6 @@ public class Movie {
 	
 	
 	
-	
 	public static void main(String[] args) {
 		String fileName = "./src/main/resources/example1.txt" ;
 		Movie lectures = Movie.parseTextFile(fileName, TimeStampSpecifier.DURATION, TimeStampSpecifier.START_TIME) ;
