@@ -42,6 +42,12 @@ public class TimeStamp {
 	public static void main(String[] args) {
 		TimeStamp timeStamp = new TimeStamp(1000) ;
 		System.out.println(timeStamp);
+		// let's look at the args
+		if(args != null) {
+			for(String arg : args) {
+				System.out.println(arg);
+			}
+		}
 	}
 	
 }

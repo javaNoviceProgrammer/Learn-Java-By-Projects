@@ -96,8 +96,13 @@ public class Movie {
 	
 	
 	public static void main(String[] args) {
-		String fileName = "./src/main/resources/example1.txt" ;
-		Movie lectures = Movie.parseTextFile(fileName, TimeStampSpecifier.DURATION, TimeStampSpecifier.START_TIME) ;
+//		String fileName = "./src/main/resources/example1.txt" ;
+		String fileName = args[0] ; // file is passed as a command line argument
+		TimeStampSpecifier outputSpecifier = TimeStampSpecifier.START_TIME ;
+		if(args.length==2) {
+			outputSpecifier = TimeStampSpecifier.valueOf(args[1]) ;
+		}
+		Movie lectures = Movie.parseTextFile(fileName, TimeStampSpecifier.DURATION, outputSpecifier) ;
 		lectures.setName("Lectures") ;
 		lectures.setHeader("Time-Line") ;
 //		lectures.saveToFile("./src/main/resources/lectures_timeline.txt");
