@@ -96,7 +96,6 @@ public class Movie {
 	
 	
 	public static void main(String[] args) {
-//		String fileName = "./src/main/resources/example1.txt" ;
 		String fileName = args[0] ; // file is passed as a command line argument
 		TimeStampSpecifier outputSpecifier = TimeStampSpecifier.START_TIME ;
 		if(args.length==2) {
