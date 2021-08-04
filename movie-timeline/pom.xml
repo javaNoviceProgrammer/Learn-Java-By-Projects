@@ -21,7 +21,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>movie_timeline.TimeStamp</mainClass>
+							<mainClass>movie_timeline.Movie</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
