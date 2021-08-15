@@ -3,6 +3,7 @@ package test;
 public class Main {
 
 	public static void main(String[] args) {
+		
 		Complex z1 = new Complex(1.1, 2.2) ;
 		Complex z2 = new Complex(-1.1, -2.2) ;
 		Complex[] w = {z1, z2} ; // inside java heap: flat layout
