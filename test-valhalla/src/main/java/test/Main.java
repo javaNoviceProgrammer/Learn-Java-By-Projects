@@ -13,6 +13,7 @@ public class Main {
 		System.out.println(w[0].getClass());
 		// some changes
 		// code like an object, works like a primitive
+		// test1
 		
 	}
 
