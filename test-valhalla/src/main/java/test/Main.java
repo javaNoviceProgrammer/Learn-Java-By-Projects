@@ -12,7 +12,7 @@ public class Main {
 		// doesn't have identity: Qtest.Complex;
 		System.out.println(w[0].getClass());
 		// some changes
-		// code like an object, works like a primitive
+		// code like an object, works like a primitive 
 		
 	}
 
