@@ -1,6 +1,5 @@
 package test;
 
-
 @__inline__
 public class Complex { // value-type classes 
 

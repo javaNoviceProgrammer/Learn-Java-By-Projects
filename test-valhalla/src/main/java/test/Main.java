@@ -1,6 +1,5 @@
 package test;
 
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -27,6 +26,13 @@ public class Main {
 		long endTime = System.currentTimeMillis() ;
 		System.out.println(String.format("total time (msec) = %d", endTime-startTime));
 		System.out.println(w2[100]);
+		
+		var p1 = new Point(1.1, 2.2) ;
+		System.out.println(p1);
+		System.out.println(p1.getClass());
+		var p2 = p1.translate(5, 10) ;
+		System.out.println(p2);
+
 	}
 
 }
