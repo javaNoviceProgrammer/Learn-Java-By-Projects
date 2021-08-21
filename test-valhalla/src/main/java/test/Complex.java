@@ -1,5 +1,6 @@
 package test;
 
+
 @__inline__
 public class Complex { // value-type classes 
 
@@ -10,13 +11,15 @@ public class Complex { // value-type classes
 		this.im = im ;
 	}
 	
-	public Complex add(Complex z) {
-		return new Complex(re+z.re, im+z.im) ;
+	public static Complex add(Complex z1, Complex z2) {
+		return new Complex(z1.re + z2.re, z1.im + z2.im) ;
 	}
 
 	@Override
 	public String toString() {
 		return "Complex [re=" + re + ", im=" + im + "]";
 	}
+	
+	
 
 }

@@ -22,10 +22,11 @@ public class Main {
 		}
 		
 		for(int i=0; i<w2.length; i++) {
-			w2[i] = w2[i].add(z1).add(z2) ;
+			w2[i] = Complex.add(w2[i], z1) ;
 		}
 		long endTime = System.currentTimeMillis() ;
 		System.out.println(String.format("total time (msec) = %d", endTime-startTime));
+		System.out.println(w2[100]);
 	}
 
 }
