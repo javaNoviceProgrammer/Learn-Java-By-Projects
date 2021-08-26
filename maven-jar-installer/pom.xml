@@ -10,11 +10,4 @@
   	<maven.compiler.target>15</maven.compiler.target>
   </properties>
   
-  <dependencies>
-  	<dependency>
-  		<groupId>org.test2</groupId>
-  		<artifactId>test2-artifact</artifactId>
-  		<version>2.0</version>
-  	</dependency>
-  </dependencies>
 </project>
