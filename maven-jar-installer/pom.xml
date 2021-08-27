@@ -10,4 +10,24 @@
   	<maven.compiler.target>15</maven.compiler.target>
   </properties>
   
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-jar-plugin</artifactId>
+  			<version>3.2.0</version>
+  			<configuration>
+  				<archive>
+  					<manifest>
+  						<mainClass>maven_installer.JarInstallerGUI</mainClass>
+  						<addClasspath>true</addClasspath>
+  					</manifest>
+  				</archive>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+  
+  
+  
 </project>

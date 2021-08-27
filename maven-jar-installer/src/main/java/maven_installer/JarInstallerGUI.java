@@ -1,40 +1,40 @@
 package maven_installer;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
-import java.awt.event.ActionEvent;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDropEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 
-import javax.swing.JTextField;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.border.TitledBorder;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import javax.swing.border.EtchedBorder;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileFilter;
 
 public class JarInstallerGUI extends JFrame {
 
@@ -88,7 +88,7 @@ public class JarInstallerGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 807, 648);
 		setMinimumSize(new Dimension(600, 600));
-		
+
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -167,6 +167,11 @@ public class JarInstallerGUI extends JFrame {
 		jarFileTextField.setColumns(10);
 		
 		browseButton = new JButton("Browse...");
+		browseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				browseButton_actionPerformed(e);
+			}
+		});
 		GridBagConstraints gbc_browseButton = new GridBagConstraints();
 		gbc_browseButton.fill = GridBagConstraints.HORIZONTAL;
 		gbc_browseButton.insets = new Insets(0, 0, 5, 0);
@@ -309,10 +314,65 @@ public class JarInstallerGUI extends JFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+
+	}
+
+	protected void browseButton_actionPerformed(ActionEvent e) {
+		// step1: open a file chooser window
+		// "." --> current working directory for JVM
+		// typically: user.home
+		JFileChooser fc = new JFileChooser(new File(".")) ;
+		// implement file filter
+		fc.setFileFilter(new FileFilter() {
+			
+			@Override
+			public String getDescription() {
+				return "Jar Files" ;
+			}
+			
+			@Override
+			public boolean accept(File f) {
+				// check if ".jar" is in the file name
+				if(f.getName().toLowerCase().contains(".jar")) {
+					return true ;
+				}
+				return false ;
+			}
+		});
 		
-		
-		
-		
+		fc.setDialogTitle("Select a jar file");
+		fc.showOpenDialog(this) ;
+		// step 2: user selects a file and closes the file chooser
+		File selectedFile = fc.getSelectedFile() ;
+		// selected file can be null if user cancels
+		if(selectedFile != null) {
+			try {
+				jarFileTextField.setText(selectedFile.getCanonicalPath());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
